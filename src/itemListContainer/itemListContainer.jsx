@@ -1,0 +1,100 @@
+/* una prop greeting */
+import React, { useState, useEffect } from 'react';
+import { Typography, Grid } from '@mui/material';
+import getData from '../services/asyncProducts';
+import Item from '../Items/Items'
+
+
+
+function ItemList() {
+
+  const [products, resProducts] = useState([]);
+  async function requestProducts() {
+    const response = await getData();
+    resProducts(response);
+
+  }
+  useEffect(() => {
+    requestProducts();
+  }, []);
+  requestProducts();
+
+const filteredProducts = products.filter((item) => item.stock > 0);
+
+  return (
+    <div>
+      <div>
+        <Typography
+          variant="h1"
+          component="h1"
+          align='center'
+
+          mt={10}
+          sx={{ display: { xs: 'none', md: 'block' } }}
+        >
+          <>Nuestros productos</></Typography>
+        <Typography
+          variant="h3"
+          component="h3"
+          align='center'
+
+          mt={9}
+          sx={{ display: { xs: 'block', md: 'none' } }}
+        >
+          <>Nuestros productos</></Typography>
+
+      </div>
+
+      <Grid container spacing={2}>
+        {filteredProducts.map((item) => (
+          <Grid key={item.id} item xs={12} md={4}>
+            <Item {...item} />
+          </Grid>
+        ))}
+      </Grid>
+    </div>
+  )
+
+
+
+
+
+}
+
+
+
+
+export default ItemList;
+
+
+/*function SaludoInicial(props) {
+
+
+    return (
+        <>
+
+            <Typography
+                variant="h3"
+                component="h3"
+                align='center'
+                mt={10}
+                sx={{ display: { xs: 'none', md:'block' }}}
+            >
+                <div>Hola {props.greeting}, bienvenido a Lo de Rulo!</div>
+            </Typography>
+            
+            <Typography
+                variant="h5"
+                component="h5"
+                align='center'
+                mt={9}
+                sx={{ display: { xs: 'block', md:'none' }}}
+            >
+                <div>Hola {props.greeting}, bienvenido a Lo de Rulo!</div>
+
+            </Typography>
+
+        </>
+    );
+
+}*/

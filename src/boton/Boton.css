@@ -1,7 +1,7 @@
 .botoncito {
     display: flex;
     flex-flow: row wrap;
-    
+    margin-bottom: 1rem;
     
 }
 .botoncito2 {

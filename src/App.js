@@ -1,6 +1,10 @@
 import NavBar from "./navBar/navBar"
-import ItemListContainer from "./itemListContainer/itemListContainer"
-
+import ItemDetailContainer from "./itemDetailContainer/ItemDetailContainer";
+import ItemListContainer from "./itemListContainer/itemListContainer";
+import ItemsHardware from "./hardware/ItemsHardware";
+import ItemsSoftware from "./software/ItemsSoftware";
+import Contacto from "./contacto/Contacto"
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 function App() {
 
@@ -8,16 +12,20 @@ function App() {
   
   return (
     <>
-      <header className="App-header">
-       <nav>
-          <NavBar />
-       </nav>
-      </header>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<ItemListContainer/>}/>
+          <Route path="/categoria/:categoria" element={<ItemListContainer/>}/>
+          <Route path="/product/:id" element={<ItemDetailContainer/>}/>
+          <Route path="/hardware" element={<ItemsHardware />} />
+          <Route path="/software" element={<ItemsSoftware />} />
+          <Route path="/contactenos" element={<Contacto />} />
+          
 
-      <div>
-      <ItemListContainer  />
-      </div>
-
+          <Route path="*" element={<h1>No se encontro la pagina solicitada!!!!!!!</h1>} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

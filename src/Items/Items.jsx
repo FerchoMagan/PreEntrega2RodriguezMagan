@@ -1,8 +1,9 @@
-import { Typography, } from '@mui/material';
+import { Typography,Button } from '@mui/material';
 import estilo from './Items.css'
-import Contador from '../boton/Boton'
+import { Link } from 'react-router-dom';
+
 function Item(props) {
-    const { nombre, img, descripcion, precio, alt, stock } = props;
+    const { nombre, img, descripcion, precio, alt, id } = props;
 
     return (
         <div style={estilo} className='listadito'>
@@ -27,7 +28,7 @@ function Item(props) {
             <img width="200" alt={alt} src={img} />
             <p><span className='negrita'>Acerca de: </span>{descripcion}</p>
             <p><span className='negrita'>Precio: </span>${precio}</p>
-            <Contador stock={stock}/>
+            <Link to={`/product/${id}`}><Button variant="contained">Ver Producto</Button></Link>
             </div>
         </div>
     )
